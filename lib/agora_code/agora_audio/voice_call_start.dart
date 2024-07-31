@@ -10,7 +10,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-class VoiceCallScrenn extends StatefulWidget {
+ class VoiceCallScrenn extends StatefulWidget {
   final String fname;
   final String imageUrl;
   final String userId;
@@ -278,7 +278,6 @@ class _VoiceCallScrennState extends State<VoiceCallScrenn> {
         ElevatedButton(
           onPressed: ()async{
              leave();
-
              Get.off(() => const HomePage());
           },
           style: ElevatedButton.styleFrom(

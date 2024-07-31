@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 import '../controllers/individual_chat_controller.dart';
+import '../home_page.dart';
 import 'constants.dart';
 
 class CallReceiveScreen extends StatefulWidget {
@@ -121,16 +122,17 @@ class _CallReceiveScreenState extends State<CallReceiveScreen> {
                               size: 40.0,
                             ),
                             onPressed: () {
-                              var userlist = [widget.receiverid, widget.userId]
-                                ..sort();
-                              var userJoin = userlist.join('-');
-                              print(
-                                  "AT DISCONNECT CALLING STATEUS ${userJoin}");
-                              var myController =
-                                  Get.isRegistered<IndividualChatController>()
-                                      ? Get.find<IndividualChatController>()
-                                      : Get.put(IndividualChatController());
-                              myController.leaveDisconnectCall(userJoin,context);
+                              // var userlist = [widget.receiverid, widget.userId]
+                              //   ..sort();
+                              // var userJoin = userlist.join('-');
+                              // print(
+                              //     "AT DISCONNECT CALLING STATEUS ${userJoin}");
+                              // var myController =
+                              //     Get.isRegistered<IndividualChatController>()
+                              //         ? Get.find<IndividualChatController>()
+                              //         : Get.put(IndividualChatController());
+                              // myController.leaveDisconnectCall(userJoin,context);
+                              Get.off(HomePage());
                             },
                           ),
                           IconButton(

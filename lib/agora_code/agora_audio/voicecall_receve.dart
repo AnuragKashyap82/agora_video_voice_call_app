@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:agora_video_voice_call_app/agora_code/agora_audio/voice_call_start.dart';
+import 'package:agora_video_voice_call_app/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -94,15 +95,16 @@ class _MakeVoiceCallState extends State<MakeVoiceCall> {
                           size: 40.0,
                         ),
                         onPressed: () {
-                          var userlist = [widget.receiverid, widget.userId]..sort();
-                          var userJoin = userlist.join('-');
-                          print(
-                              "AT DISCONNECT CALLING STATEUS ${userJoin}");
-                          var myController =
-                          Get.isRegistered<IndividualChatController>()
-                              ? Get.find<IndividualChatController>()
-                              : Get.put(IndividualChatController());
-                          myController.leaveDisconnectCall(userJoin,context);
+                          // var userlist = [widget.receiverid, widget.userId]..sort();
+                          // var userJoin = userlist.join('-');
+                          // print(
+                          //     "AT DISCONNECT CALLING STATEUS ${userJoin}");
+                          // var myController =
+                          // Get.isRegistered<IndividualChatController>()
+                          //     ? Get.find<IndividualChatController>()
+                          //     : Get.put(IndividualChatController());
+                          // myController.leaveDisconnectCall(userJoin,context);
+                          Get.off(HomePage());
                         },
                       ),
                       IconButton(
