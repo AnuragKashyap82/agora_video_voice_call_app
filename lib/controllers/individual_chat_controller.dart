@@ -225,7 +225,7 @@ if(calltype=="video"){
         update();
         await sendNotificationToSelectedDriver("Video call", channelidd, userData['token'],
             userID, name, imageUrl,calltype,isvideocall,isvoicecall);
-        return "dW6-s22BTg-d5mIhtLDb1r:APA91bEAu5ZgRa7GYmnGewukcMBpy_5SSzS8w5jC6jvYKdUzGcDQrd1FCidyVZxNdoRirrAof9a1KC45Ey7iZGMOgSJXF9Mj2iQhSbdSRHxmmgluWiht9TlO-iEp7Dm6HUj0RYuKBi2u";
+        return "";
       } else {
         print('Document does not exist for $userID');
       }
