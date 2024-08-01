@@ -36,7 +36,7 @@ class _CallReceiveScreenState extends State<CallReceiveScreen> {
 
   void fetchDatareceiver(channelName) async {
     // URL and request body
-    final String url =
+    const String url =
         'https://api.vegansmeetdaily.com/api/v1/users/create_agora_token';
     final Map<String, String> body = {
       'channel_name': channelName,
@@ -77,15 +77,14 @@ class _CallReceiveScreenState extends State<CallReceiveScreen> {
   @override
   Widget build(BuildContext context) {
     return
-      SafeArea(child: Scaffold(
+      Scaffold(
       body: GetBuilder<IndividualChatController>(builder: (controller) {
         return
           Stack(
           fit: StackFit.expand,
           children: [
             Image.network(
-              //  '${widget.imageUrl}', // Replace with your image URL
-              'https://docs.flutter.dev/assets/images/dash/dash-fainting.gif',
+              widget.imageUrl,
               fit: BoxFit.cover,
             ),
             Container(
@@ -93,15 +92,15 @@ class _CallReceiveScreenState extends State<CallReceiveScreen> {
             ),
             controller.callactiveornotstatus == true
                 ? Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const SizedBox(height: 16.0),
-                      const Text(
+                      const SizedBox(height: 60.0),
+                       Text(
                         'Incoming Video Call',
                         style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 24.0,
+                          color: Colors.grey.shade300,
+                          fontSize: 18.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -109,57 +108,62 @@ class _CallReceiveScreenState extends State<CallReceiveScreen> {
                       Text(
                         '${widget.fname} ${widget.lname}',
                         style:
-                            const TextStyle(fontSize: 20, color: Colors.black),
+                             TextStyle(fontSize: 16, color: Colors.grey.shade300, fontWeight: FontWeight.bold),
                       ),
-                      const SizedBox(height: 40.0),
+                      Expanded(child  : const SizedBox(height: 40.0)),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          IconButton(
-                            icon: const Icon(
-                              Icons.call_end,
-                              color: Colors.red,
-                              size: 40.0,
+                          Container(
+                            height: 60,
+                            width: 60,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.grey.shade300
                             ),
-                            onPressed: () {
-                              // var userlist = [widget.receiverid, widget.userId]
-                              //   ..sort();
-                              // var userJoin = userlist.join('-');
-                              // print(
-                              //     "AT DISCONNECT CALLING STATEUS ${userJoin}");
-                              // var myController =
-                              //     Get.isRegistered<IndividualChatController>()
-                              //         ? Get.find<IndividualChatController>()
-                              //         : Get.put(IndividualChatController());
-                              // myController.leaveDisconnectCall(userJoin,context);
-                              Get.off(HomePage());
-                            },
-                          ),
-                          IconButton(
-                            icon: const Icon(
-                              Icons.call,
-                              color: Colors.green,
-                              size: 40.0,
+                            child: Center(
+                              child: IconButton(
+                                icon: const Icon(
+                                  Icons.call_end,
+                                  color: Colors.red,
+                                  size: 24.0,
+                                ),
+                                onPressed: () {
+                                  Get.off(HomePage());
+                                },
+                              ),
                             ),
-                            onPressed: () {
-                              // Add logic for accepting the call
-                              print("GETTNG CHANNEL ID IS ${widget.channelId}");
-                              print(
-                                  "GETTING TOKEN WITH CHANNER ${widget.channelId} and token is ${userToken}");
-
-                              Get.to(VideoCallScreen(
-                                  imageUrl: widget.imageUrl,
-                                  fname: widget.fname,
-                                  userId: widget.userId,
-                                  receivecall: true,
-                                  channelId: widget.channelId,
-                                  agoratoken: userToken,
-                                  lname: ''));
-                              print('Call Accepted');
-                            },
                           ),
+                          Container(
+                            height: 60,
+                            width: 60,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.grey.shade300
+                            ),
+                            child: IconButton(
+                              icon: const Icon(
+                                Icons.call,
+                                color: Colors.green,
+                                size: 24.0,
+                              ),
+                              onPressed: () {
+                                // Add logic for accepting the call
+                                Get.to(VideoCallScreen(
+                                    imageUrl: widget.imageUrl,
+                                    fname: widget.fname,
+                                    userId: widget.userId,
+                                    receivecall: true,
+                                    channelId: widget.channelId,
+                                    agoratoken: userToken,
+                                    lname: ''));
+                                print('Call Accepted');
+                              },
+                            ),
+                          )
                         ],
                       ),
+                      SizedBox(height: 80.0)
                     ],
                   )
                 : const Center(
@@ -172,6 +176,6 @@ class _CallReceiveScreenState extends State<CallReceiveScreen> {
           ],
         );
       }),
-    ));
+          );
   }
 }

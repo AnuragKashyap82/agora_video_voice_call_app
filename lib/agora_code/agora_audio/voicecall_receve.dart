@@ -44,7 +44,7 @@ class _MakeVoiceCallState extends State<MakeVoiceCall> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Scaffold(
+    return Scaffold(
       body: GetBuilder<IndividualChatController>(builder: (controller) {
         return
           Stack(
@@ -54,11 +54,7 @@ class _MakeVoiceCallState extends State<MakeVoiceCall> {
                   '${widget.imageUrl}', // Replace with your image URL
                 fit: BoxFit.cover,
                 errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
-                  return Icon(
-                    Icons.error,
-                    size: 50,
-                    color: Colors.red,
-                  );
+                  return SizedBox();
                 },
               ),
               Container(
@@ -69,12 +65,12 @@ class _MakeVoiceCallState extends State<MakeVoiceCall> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 16.0),
-                  const Text(
+                  const SizedBox(height: 60.0),
+                  Text(
                     'Incoming Voice Call',
                     style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24.0,
+                      color: Colors.grey.shade300,
+                      fontSize: 18.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -82,56 +78,74 @@ class _MakeVoiceCallState extends State<MakeVoiceCall> {
                   Text(
                     '${widget.fname} ${widget.lname}',
                     style:
-                    const TextStyle(fontSize: 20, color: Colors.black),
+                    TextStyle(fontSize: 16, color: Colors.grey.shade300, fontWeight: FontWeight.bold),
                   ),
-                  const SizedBox(height: 40.0),
+                  Expanded(child: const SizedBox(height: 40.0)),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      IconButton(
-                        icon: const Icon(
-                          Icons.call_end,
-                          color: Colors.red,
-                          size: 40.0,
-                        ),
-                        onPressed: () {
-                          // var userlist = [widget.receiverid, widget.userId]..sort();
-                          // var userJoin = userlist.join('-');
-                          // print(
-                          //     "AT DISCONNECT CALLING STATEUS ${userJoin}");
-                          // var myController =
-                          // Get.isRegistered<IndividualChatController>()
-                          //     ? Get.find<IndividualChatController>()
-                          //     : Get.put(IndividualChatController());
-                          // myController.leaveDisconnectCall(userJoin,context);
-                          Get.off(HomePage());
-                        },
-                      ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.call,
-                          color: Colors.green,
-                          size: 40.0,
-                        ),
-                        onPressed: () {
-                          // Add logic for accepting the call
-                          print("GETTNG CHANNEL ID IS ${widget.channelId}");
-                          print(
-                              "GETTING TOKEN WITH CHANNER ${widget.channelId} and token is ${userToken}");
 
-                          Get.to(VoiceCallScrenn(
-                              imageUrl: widget.imageUrl,
-                              fname: widget.fname,
-                              userId: widget.userId,
-                              receivecall: true,
-                              channelId: widget.channelId,
-                              agoratoken: userToken,
-                              lname: ''));
-                          print('Call Accepted');
-                        },
+                      Container(
+                        height: 60,
+                        width: 60,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.grey.shade300
+                        ),
+                        child: IconButton(
+                          icon: const Icon(
+                            Icons.call_end,
+                            color: Colors.red,
+                            size: 24.0,
+                          ),
+                          onPressed: () {
+                            // var userlist = [widget.receiverid, widget.userId]..sort();
+                            // var userJoin = userlist.join('-');
+                            // print(
+                            //     "AT DISCONNECT CALLING STATEUS ${userJoin}");
+                            // var myController =
+                            // Get.isRegistered<IndividualChatController>()
+                            //     ? Get.find<IndividualChatController>()
+                            //     : Get.put(IndividualChatController());
+                            // myController.leaveDisconnectCall(userJoin,context);
+                            Get.off(HomePage());
+                          },
+                        ),
+                      ),
+                      Container(
+                        height: 60,
+                        width: 60,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.grey.shade300
+                        ),
+                        child: IconButton(
+                          icon: const Icon(
+                            Icons.call,
+                            color: Colors.green,
+                            size: 24.0,
+                          ),
+                          onPressed: () {
+                            // Add logic for accepting the call
+                            print("GETTNG CHANNEL ID IS ${widget.channelId}");
+                            print(
+                                "GETTING TOKEN WITH CHANNER ${widget.channelId} and token is ${userToken}");
+
+                            Get.to(VoiceCallScrenn(
+                                imageUrl: widget.imageUrl,
+                                fname: widget.fname,
+                                userId: widget.userId,
+                                receivecall: true,
+                                channelId: widget.channelId,
+                                agoratoken: userToken,
+                                lname: ''));
+                            print('Call Accepted');
+                          },
+                        ),
                       ),
                     ],
                   ),
+                  SizedBox(height: 80.0)
                 ],
               )
                   : const Center(
@@ -140,11 +154,10 @@ class _MakeVoiceCallState extends State<MakeVoiceCall> {
                   style: TextStyle(color: Colors.black, fontSize: 12.0),
                 ),
               ),
-              const SizedBox(height: 20),
             ],
           );
       }),
-    ));
+    );
   }
 
 

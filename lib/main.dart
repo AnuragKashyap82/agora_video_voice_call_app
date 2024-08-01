@@ -13,7 +13,7 @@ import 'home_page.dart';
 
 AndroidNotificationChannel channel = const AndroidNotificationChannel(
   'high_importance_channel', // id
-  'High Importance Notifications', // title
+  'High Importance Notifications',
   importance: Importance.high,
   enableVibration: true,
   playSound: true

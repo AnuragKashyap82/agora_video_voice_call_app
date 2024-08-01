@@ -4,9 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
-import 'agora_code/makevideocall.dart';
 import 'controllers/individual_chat_controller.dart';
 
 class HomePage extends StatefulWidget {
@@ -40,7 +37,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-
         title: Text("Home Page"),
         backgroundColor: Colors.pinkAccent,
         actions: [
@@ -120,10 +116,9 @@ class _HomePageState extends State<HomePage> {
                                         'https://plus.unsplash.com/premium_photo-1664536392896-cd1743f9c02c?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',//ImageUrl
                                         channelid,
                                         context,
-                                        'Kashyap');
+                                        'Kashyap',
+                                    );
                                   }
-
-
                                 }, icon: Icon(Icons.call_end_outlined,color: data['email'] == FirebaseAuth.instance.currentUser!.email?Colors.grey.shade200:Colors.green,)),
                                 IconButton(onPressed: ()async{
                                   if(data['email'] == FirebaseAuth.instance.currentUser!.email){
@@ -137,10 +132,9 @@ class _HomePageState extends State<HomePage> {
                                         'https://plus.unsplash.com/premium_photo-1664536392896-cd1743f9c02c?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',//ImageUrl
                                         channelid,
                                         context,
-                                        'Kashyap');
+                                        'Kashyap',
+                                    );
                                   }
-
-
                                 }, icon: Icon(Icons.video_call,color: data['email'] == FirebaseAuth.instance.currentUser!.email?Colors.grey.shade200:Colors.green,)),
                               ],
                             ),
@@ -155,100 +149,6 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: 16,
             ),
-            // SizedBox(
-            //   height: 16,
-            // ),
-            // GestureDetector(
-            //   onTap: (){
-            //     DateTime time = DateTime.now();
-            //     var channelid =
-            //         '${time.millisecondsSinceEpoch}';
-            //     controller.makeCall(
-            //         'w30aMhbMyxTmzsdJ5wroNPyYsEs2',
-            //         'Shantanu Singh',
-            //         '',
-            //         channelid,
-            //         context,
-            //         'Singh');
-            //   },
-            //   child: Container(
-            //     height: 60,
-            //     width: MediaQuery.of(context).size.width,
-            //     decoration: BoxDecoration(
-            //       color: Colors.pinkAccent,
-            //       borderRadius: BorderRadius.circular(10)
-            //     ),
-            //     child: Center(child: Text("Satrt Video Call")),
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: 16,
-            // ),
-            // GestureDetector(
-            //   onTap: (){
-            //     DateTime time = DateTime.now();
-            //     var channelid =
-            //         '${time.millisecondsSinceEpoch}';
-            //     controller.makeAudioCall(
-            //         'w30aMhbMyxTmzsdJ5wroNPyYsEs2',
-            //         'Shantanu Singh',
-            //         '',
-            //         channelid,
-            //         context,
-            //         'Singh');
-            //   },
-            //   child: Container(
-            //     height: 60,
-            //     width: MediaQuery.of(context).size.width,
-            //     decoration: BoxDecoration(
-            //         color: Colors.pinkAccent,
-            //         borderRadius: BorderRadius.circular(10)
-            //     ),
-            //     child: Center(child: Text("Satrt Voice Call")),
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: 16,
-            // ),
-            // GestureDetector(
-            //   onTap: (){
-            //     controller.sendNotificationToSelectedDriver("messagee", "channelid", "token", "userID", "name", "imageUrl", "calltype", "true", "false");
-            //   },
-            //   child: Container(
-            //     height: 60,
-            //     width: MediaQuery.of(context).size.width,
-            //     decoration: BoxDecoration(
-            //         color: Colors.green,
-            //         borderRadius: BorderRadius.circular(10)
-            //     ),
-            //     child: Center(child: Text("Send Notification")),
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: 16,
-            // ),
-            // GestureDetector(
-            //   onTap: (){
-            //     Get.to(CallReceiveScreen(
-            //       imageUrl: "imageUrl",
-            //       fname: "Shantanu",
-            //       lname: "Singh",
-            //       userId: "W45ZyYuidYWNrZEycq8ROIV13tZ2",
-            //       receivecall: true,
-            //       channelId: "1722249887696",
-            //       receiverid: "w30aMhbMyxTmzsdJ5wroNPyYsEs2",
-            //     ));
-            //   },
-            //   child: Container(
-            //     height: 60,
-            //     width: MediaQuery.of(context).size.width,
-            //     decoration: BoxDecoration(
-            //         color: Colors.green,
-            //         borderRadius: BorderRadius.circular(10)
-            //     ),
-            //     child: Center(child: Text("Recieve Video Call")),
-            //   ),
-            // ),
           ],
         ),
       ),
