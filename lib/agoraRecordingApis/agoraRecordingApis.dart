@@ -4,30 +4,35 @@ import 'dart:convert';
 class RecordingApis{
 
   // Replace these values with your actual Agora credentials
-   String appId = MyConstants.agoraAppId;
-   String appCertificate = MyConstants.agoraCertificateId;
+   String key = "8e47a98b86c74bddaed7d68afaef4c18";
+   String secret = "48a9724bf55f4505a7e3f3c040e9b735";
 
    String generateAuthHeader() {
-     final credentials = '$appId:$appCertificate';
+     final credentials = '$key:$secret';
      final encodedCredentials = base64Encode(utf8.encode(credentials));
      return '$encodedCredentials';
    }
 
    Future<String> acquireResourceId(String channelName, String uid) async {
      try {
-       final url = 'https://api.agora.io/v1/apps/$appId/cloud_recording/acquire';
-       String auth = generateAuthHeader();
-       final response = await http.post(
-         Uri.parse(url),
-         headers: {
-           'Content-Type': 'application/json',
-           'Authorization': auth,
-         },
-         body: jsonEncode({
+       final url = Uri.https(
+         'api.agora.io',
+         'v1/apps/${MyConstants.agoraAppId}/cloud_recording/acquire',
+         {
            'cname': channelName,
            'uid': uid,
-         }),
+         },
        );
+
+       String auth = generateAuthHeader();
+       final response = await http.get(
+         url,
+         headers: {
+           'Content-Type': 'application/json',
+           'Authorization': "Basci $auth",
+         },
+       );
+
        if (response.statusCode == 200) {
          final responseBody = jsonDecode(response.body);
          if (responseBody['resourceId'] != null) {
@@ -44,12 +49,14 @@ class RecordingApis{
    }
 
   Future<void> startRecording(String resourceId, String channelName, String uid) async {
-    final url = 'https://api.agora.io/v1/apps/$appId/cloud_recording/resourceid/$resourceId/mode/mix/start';
+    final url = 'https://api.agora.io/v1/apps/${MyConstants.agoraAppId}/cloud_recording/resourceid/$resourceId/mode/mix/start';
+    String auth = generateAuthHeader();
     final response = await http.post(
       Uri.parse(url),
+
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Basic ${base64Encode(utf8.encode('$appId:$appCertificate'))}',
+        'Authorization': "Basci $auth",
       },
       body: jsonEncode({
         "cname": channelName,
@@ -68,17 +75,17 @@ class RecordingApis{
   }
 
   Future<void> stopRecording(String resourceId, String channelName, String uid) async {
-    final url = 'https://api.agora.io/v1/apps/$appId/cloud_recording/resourceid/$resourceId/mode/mix/stop';
+    final url = 'https://api.agora.io/v1/apps/${MyConstants.agoraAppId}/cloud_recording/resourceid/$resourceId/mode/mix/stop';
+    String auth = generateAuthHeader();
     final response = await http.post(
       Uri.parse(url),
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Basic ${base64Encode(utf8.encode('$appId:$appCertificate'))}',
+        'Authorization': "Basci $auth",
       },
       body: jsonEncode({
         "cname": channelName,
         "uid": uid,
-        "clientRequest": {}
       }),
     );
 
